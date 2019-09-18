@@ -1,6 +1,4 @@
 let moment = require('moment');
-// let MomentRange = require('moment-range');
-// let moment = MomentRange.extendMoment(Moment)
 
 module.exports = function SettingsBillFactory() {
 
@@ -111,8 +109,8 @@ module.exports = function SettingsBillFactory() {
     }
 
     return {
-        grandTotal,
         forTotals,
+        grandTotal,
         setSettings,
         getSettings,
         getActionsFor,
