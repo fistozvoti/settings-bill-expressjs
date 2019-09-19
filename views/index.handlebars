@@ -44,6 +44,7 @@
               <button class="button-primary" type="submit" name="button">Add</button>
 
             </form>
+
             <h5>Totals</h5>
             <table>
               <tr>
@@ -65,6 +66,10 @@
                 <td> R<span class="totalSettings {{determineLevel}}">{{totals.grandTotal}}</span> </td>
               </tr>
             </table>
+
+            <form style="margin-bottom: 1px" action="/reset" method="POST">
+              <button class="button-primary" type="submit" name="reset">Reset</button>
+            </form>
 
           </div>
           <div class="six columns">

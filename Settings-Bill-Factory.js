@@ -1,5 +1,3 @@
-let moment = require('moment');
-
 module.exports = function SettingsBillFactory() {
 
     var smsCost;
@@ -24,7 +22,7 @@ module.exports = function SettingsBillFactory() {
         listOfActions.push({
             data,
             totalCost,
-            timerecording: moment(new Date()).fromNow()
+            timerecording: new Date()
         });
     }
 
@@ -91,6 +89,19 @@ module.exports = function SettingsBillFactory() {
         }
     }
 
+    function reset(){
+        listOfActions.data = 0;
+        listOfActions.timerecording = 0;
+        listOfActions.totalCost = 0;
+
+        smsCost = '';
+        callCost = '';
+        warningLevel = '';
+        criticalLevel = '';
+
+        listOfActions = [];
+    }
+
     function getCriticalLevel() {
         let total = grandTotal();
         return total >= criticalLevel;
@@ -109,6 +120,7 @@ module.exports = function SettingsBillFactory() {
     }
 
     return {
+        reset,
         forTotals,
         grandTotal,
         setSettings,

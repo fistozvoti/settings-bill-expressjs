@@ -1,19 +1,19 @@
 <div class="row">
     <h1>Actions</h1>
 
-    <table>
+    <table id="records">
         <tr>
 
-        <th>Type</th>
-        <th>Price</th>
-        <th>When</th>
+        <td>Type</td>
+        <td>Price</td>
+        <td>When</td>
 
         </tr>
         {{#each actions}}
         <tr>
-            <td>{{data}}</td>
-            <td>{{totalCost}}</td>
-            <td>{{timerecording}}</td>
+            <th>{{data}}</th>
+            <th>{{totalCost}}</th>
+            <th>{{time}}</th>
         </tr>
         {{/each}}
     </table>
