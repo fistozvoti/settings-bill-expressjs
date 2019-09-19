@@ -30,15 +30,18 @@ app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
   let determineLevel = ""
-  if (settingsBill.getWarningLevel()) {
-    determineLevel = "warning"
-  } else if (settingsBill.getCriticalLevel()) {
-    determineLevel = "danger"
+
+  if (settingsBill.grandTotal() !== 0) {
+    if (settingsBill.getWarningLevel()) {
+      determineLevel = "warning"
+    } else if (settingsBill.getCriticalLevel()) {
+      determineLevel = "danger"
+    }
   }
   res.render('index', {
     settings: settingsBill.getSettings(),
     totals: settingsBill.forTotals(),
-    determineLevel
+    determineLevel,
   })
 });
 
@@ -64,8 +67,10 @@ app.post('/settings', function (req, res) {
 });
 
 app.post('/action', function (req, res) {
-  settingsBill.keepRecordOfAction(req.body.actionType);
-  res.redirect('/')
+  if (req.body.actionType) {
+    settingsBill.keepRecordOfAction(req.body.actionType);
+  }
+  res.redirect('/');
 });
 
 app.get('/actions', function (req, res) {
