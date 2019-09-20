@@ -5,14 +5,35 @@ const SettingsBillFactory = require('../Settings-Bill-Factory');
 
 describe('settings-bill', function () {
 
-    const settingsBill = SettingsBillFactory();
+    var settingsBill = SettingsBillFactory();
 
     it('should be able to keep record of calls made', function () {
+        settingsBill.setSettings({
+            callCost: 0,
+            smsCost: 0,
+            warningLevel: 0,
+            criticalLevel: 10
+        });
+        // settingsBill.keepRecordOfAction('call');
+        // settingsBill.keepRecordOfAction('call');
+        // settingsBill.keepRecordOfAction('call');
         settingsBill.keepRecordOfAction('call');
-        settingsBill.keepRecordOfAction('call');
-        settingsBill.keepRecordOfAction('call');
-        settingsBill.keepRecordOfAction('call');
-        assert.equal(4, settingsBill.getActionsFor('call').length);
+        
+        assert.equal(1, settingsBill.getActionsFor("call").length);
+    });
+    it('should be able to keep record of SMSs made', function () {
+        settingsBill.setSettings({
+            callCost: 0,
+            smsCost: 0,
+            warningLevel: 0,
+            criticalLevel: 10
+        });
+        // settingsBill.keepRecordOfAction('sms');
+        // settingsBill.keepRecordOfAction('sms');
+        // settingsBill.keepRecordOfAction('sms');
+        settingsBill.keepRecordOfAction('sms');
+        
+        assert.equal(1, settingsBill.getActionsFor("call").length);
     });
     it('should allow the user to set the settings', function () {
         settingsBill.setSettings({

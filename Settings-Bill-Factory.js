@@ -17,16 +17,14 @@ module.exports = function SettingsBillFactory() {
             else if (data === 'call') {
                 totalCost += callCost;
             }
-            if (data !== undefined) {
 
-                listOfActions.push({
-                    data,
-                    totalCost,
-                    timerecording: new Date()
-                });
-            }
+            listOfActions.push({
+                data,
+                totalCost,
+                timerecording: new Date()
+            });
+
         }
-
     }
 
     function setSettings(settings) {
@@ -48,7 +46,6 @@ module.exports = function SettingsBillFactory() {
 
     function getActionsFor(type) {
         const filteredActions = [];
-
         for (let i = 0; i < listOfActions.length; i++) {
             const action = listOfActions[i];
             if (action.data === type) {
@@ -93,6 +90,10 @@ module.exports = function SettingsBillFactory() {
     }
 
     function reset() {
+        // listOfActions.data = 0;
+        // listOfActions.timerecording = 0;
+        // listOfActions.totalCost = 0;
+
         smsCost = '';
         callCost = '';
         warningLevel = '';
